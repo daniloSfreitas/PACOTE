@@ -41,7 +41,7 @@ public class CopiaDiretorio {
         	if (files[i].isDirectory()) {
                 copiarDiretorios(files[i], new File(destino + "\\" + files[i].getName()));
             } else {
-                System.out.println(i +" "+ files[i].getName());
+                //System.out.println(i +" "+ files[i].getName());
                 copiar(files[i], new File(destino + "\\" + files[i].getName()));
             }
         }
@@ -51,6 +51,10 @@ public class CopiaDiretorio {
 		/*File origem = new File("C:\\SVN-PROJETOS\\SISTEMAS\\WEBMANAGER\\");
 		File destino = new File("C:\\temp\\teste");
 		copiarDiretorios(origem,destino);*/
+		
+		
+		
+		
 	
 	}
 }

@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.ldap.Rdn;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -26,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import dao.DAO;
+import javax.swing.ButtonGroup;
 
 public class App extends DAO {
 
@@ -34,6 +36,9 @@ public class App extends DAO {
 	private String sistemaSelecionado;
 	private static File pacoteModelo;
 	private JTextField textBase;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
+	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -77,15 +82,18 @@ public class App extends DAO {
 		textBase.setBounds(46, 36, 122, 20);
 		frame.getContentPane().add(textBase);
 
-		JRadioButton rdbtnProducao = new JRadioButton("Produ\u00E7\u00E3o");
+		JRadioButton rdbtnProducao = new JRadioButton("Producao");
+		buttonGroup.add(rdbtnProducao);
 		rdbtnProducao.setBounds(174, 8, 89, 14);
 		frame.getContentPane().add(rdbtnProducao);
 
 		JRadioButton rdbtnTeste = new JRadioButton("Teste");
+		buttonGroup.add(rdbtnTeste);
 		rdbtnTeste.setBounds(174, 42, 109, 14);
 		frame.getContentPane().add(rdbtnTeste);
 
-		JRadioButton rdbtnHomologacao = new JRadioButton("Homologa\u00E7\u00E3o");
+		JRadioButton rdbtnHomologacao = new JRadioButton("Homologacao");
+		buttonGroup.add(rdbtnHomologacao);
 		rdbtnHomologacao.setBounds(174, 25, 109, 14);
 		frame.getContentPane().add(rdbtnHomologacao);
 
@@ -111,11 +119,11 @@ public class App extends DAO {
 		comboBoxFinalManager.setBounds(92, 118, 165, 20);
 		frame.getContentPane().add(comboBoxFinalManager);
 
-		JLabel lblInicialManager = new JLabel("Vers\u00E3o Inicial");
+		JLabel lblInicialManager = new JLabel("Versao Inicial");
 		lblInicialManager.setBounds(20, 90, 76, 14);
 		frame.getContentPane().add(lblInicialManager);
 
-		JLabel lblFinalManager = new JLabel("Vers\u00E3o Final");
+		JLabel lblFinalManager = new JLabel("Versao Final");
 		lblFinalManager.setBounds(20, 121, 76, 14);
 		frame.getContentPane().add(lblFinalManager);
 
@@ -136,11 +144,11 @@ public class App extends DAO {
 		comboBoxFinalSPED.setBounds(92, 219, 165, 20);
 		frame.getContentPane().add(comboBoxFinalSPED);
 		
-		JLabel lblInicialSPED = new JLabel("Vers\u00E3o Inicial");
+		JLabel lblInicialSPED = new JLabel("Versao Inicial");
 		lblInicialSPED.setBounds(20, 191, 76, 14);
 		frame.getContentPane().add(lblInicialSPED);
 		
-		JLabel lnlFinalSPED = new JLabel("Vers\u00E3o Final");
+		JLabel lnlFinalSPED = new JLabel("Versao Final");
 		lnlFinalSPED.setBounds(20, 222, 76, 14);
 		frame.getContentPane().add(lnlFinalSPED);
 		
@@ -161,11 +169,11 @@ public class App extends DAO {
 		comboBoxFinalECD.setBounds(92, 313, 165, 20);
 		frame.getContentPane().add(comboBoxFinalECD);
 		
-		JLabel lblInicialECD = new JLabel("Vers\u00E3o Inicial");
+		JLabel lblInicialECD = new JLabel("Versao Inicial");
 		lblInicialECD.setBounds(20, 285, 76, 14);
 		frame.getContentPane().add(lblInicialECD);
 		
-		JLabel lblFinalECD = new JLabel("Vers\u00E3o Final");
+		JLabel lblFinalECD = new JLabel("Versao Final");
 		lblFinalECD.setBounds(20, 316, 76, 14);
 		frame.getContentPane().add(lblFinalECD);
 		
@@ -186,11 +194,11 @@ public class App extends DAO {
 		comboBoxFinalNFE.setBounds(454, 118, 165, 20);
 		frame.getContentPane().add(comboBoxFinalNFE);
 		
-		JLabel lblInicialNFE = new JLabel("Vers\u00E3o Inicial");
+		JLabel lblInicialNFE = new JLabel("Versao Inicial");
 		lblInicialNFE.setBounds(382, 90, 76, 14);
 		frame.getContentPane().add(lblInicialNFE);
 		
-		JLabel lblFinalNFE = new JLabel("Vers\u00E3o Final");
+		JLabel lblFinalNFE = new JLabel("Versao Final");
 		lblFinalNFE.setBounds(382, 121, 76, 14);
 		frame.getContentPane().add(lblFinalNFE);
 		
@@ -211,11 +219,11 @@ public class App extends DAO {
 		comboBoxFinalWManager.setBounds(454, 219, 165, 20);
 		frame.getContentPane().add(comboBoxFinalWManager);
 		
-		JLabel lblInicialWMenage = new JLabel("Vers\u00E3o Inicial");
+		JLabel lblInicialWMenage = new JLabel("Versao Inicial");
 		lblInicialWMenage.setBounds(382, 191, 76, 14);
 		frame.getContentPane().add(lblInicialWMenage);
 		
-		JLabel lblFinalWManager = new JLabel("Vers\u00E3o Final");
+		JLabel lblFinalWManager = new JLabel("Versao Final");
 		lblFinalWManager.setBounds(382, 222, 76, 14);
 		frame.getContentPane().add(lblFinalWManager);
 		
@@ -236,11 +244,11 @@ public class App extends DAO {
 		comboBoxFinalEFD.setBounds(454, 313, 165, 20);
 		frame.getContentPane().add(comboBoxFinalEFD);
 		
-		JLabel lblInicialEFD = new JLabel("Vers\u00E3o Inicial");
+		JLabel lblInicialEFD = new JLabel("Versao Inicial");
 		lblInicialEFD.setBounds(382, 285, 76, 14);
 		frame.getContentPane().add(lblInicialEFD);
 		
-		JLabel lblFinalEFD = new JLabel("Vers\u00E3o Final");
+		JLabel lblFinalEFD = new JLabel("Versao Final");
 		lblFinalEFD.setBounds(382, 316, 76, 14);
 		frame.getContentPane().add(lblFinalEFD);
 		
@@ -261,11 +269,11 @@ public class App extends DAO {
 		comboBoxFinalECF.setBounds(92, 408, 165, 20);
 		frame.getContentPane().add(comboBoxFinalECF);
 		
-		JLabel lblInicialECF = new JLabel("Vers\u00E3o Inicial");
+		JLabel lblInicialECF = new JLabel("Versao Inicial");
 		lblInicialECF.setBounds(20, 380, 76, 14);
 		frame.getContentPane().add(lblInicialECF);
 		
-		JLabel lblFinalECF = new JLabel("Vers\u00E3o Final");
+		JLabel lblFinalECF = new JLabel("Versao Final");
 		lblFinalECF.setBounds(20, 411, 76, 14);
 		frame.getContentPane().add(lblFinalECF);
 		
@@ -288,26 +296,32 @@ public class App extends DAO {
 		frame.getContentPane().add(REINF);
 		
 		JRadioButton rdbtnV8 = new JRadioButton("v8");
+		buttonGroup_2.add(rdbtnV8);
 		rdbtnV8.setBounds(46, 347, 37, 23);
 		frame.getContentPane().add(rdbtnV8);
 		
 		JRadioButton rdbtnV9 = new JRadioButton("v9");
+		buttonGroup_2.add(rdbtnV9);
 		rdbtnV9.setBounds(86, 347, 109, 23);
 		frame.getContentPane().add(rdbtnV9);
 		
 		JRadioButton rdbtnD = new JRadioButton("820D_029");
+		buttonGroup_1.add(rdbtnD);
 		rdbtnD.setBounds(416, 376, 89, 23);
 		frame.getContentPane().add(rdbtnD);
 		
 		JRadioButton rdbtnD_E = new JRadioButton("821D_E");
+		buttonGroup_1.add(rdbtnD_E);
 		rdbtnD_E.setBounds(524, 376, 89, 23);
 		frame.getContentPane().add(rdbtnD_E);
 		
 		JRadioButton rdbtnA = new JRadioButton("821A");
+		buttonGroup_1.add(rdbtnA);
 		rdbtnA.setBounds(416, 407, 89, 23);
 		frame.getContentPane().add(rdbtnA);
 		
 		JRadioButton rdbtnB = new JRadioButton("821B");
+		buttonGroup_1.add(rdbtnB);
 		rdbtnB.setBounds(524, 407, 89, 23);
 		frame.getContentPane().add(rdbtnB);
 		
@@ -332,7 +346,7 @@ public class App extends DAO {
 		JMenu mnProcessos = new JMenu("Processos");
 		menuBar.add(mnProcessos);
 		
-		JMenuItem mntmManutenoDoArquivo = new JMenuItem("Manuten\u00E7\u00E3o do arquivo .INI");
+		JMenuItem mntmManutenoDoArquivo = new JMenuItem("Manutenecao do arquivo .INI");
 		mnProcessos.add(mntmManutenoDoArquivo);
 
 		checkBoxManager.addItemListener(new ItemListener() {
@@ -366,6 +380,197 @@ public class App extends DAO {
 				}
 			}
 		});
+		checkBoxWManager.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					sistemaSelecionado = "WEBMANAGER";
+					try {
+						Connection conexao = getConexao();
+						PreparedStatement pstmt = conexao.prepareStatement(
+								"SELECT MXR_RELEASE FROM MXS_RELEASES_MXR WHERE MXR_SISTEMA='WEBMANAGER' ORDER BY MXR_ORDEM");
+						
+						ResultSet rs = pstmt.executeQuery();
+
+						while (rs.next()) {
+							comboBoxInicialWManager.addItem(rs.getString("MXR_RELEASE"));
+							comboBoxFinalWManager.addItem(rs.getString("MXR_RELEASE"));
+							
+							
+
+						}
+						pstmt.close();
+						conexao.close();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				} else {
+					comboBoxInicialWManager.removeAllItems();
+					comboBoxFinalWManager.removeAllItems();
+				}
+			}
+		});
+		
+		checkBoxECD.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					sistemaSelecionado = "ECD";
+					try {
+						Connection conexao = getConexao();
+						PreparedStatement pstmt = conexao.prepareStatement(
+								"SELECT MXR_VERSAO FROM MXS_RELEASES_MXR WHERE MXR_SISTEMA='ECD' ORDER BY MXR_ORDEM");
+						
+						ResultSet rs = pstmt.executeQuery();
+
+						while (rs.next()) {
+							comboBoxInicialECD.addItem(rs.getString("MXR_VERSAO"));
+							comboBoxFinalECD.addItem(rs.getString("MXR_VERSAO"));
+							
+							
+
+						}
+						pstmt.close();
+						conexao.close();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				} else {
+					comboBoxInicialECD.removeAllItems();
+					comboBoxFinalECD.removeAllItems();
+				}
+			}
+		});
+		checkBoxECF.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					sistemaSelecionado = "ECF";
+					try {
+						Connection conexao = getConexao();
+						PreparedStatement pstmt = conexao.prepareStatement(
+								"SELECT MXR_VERSAO FROM MXS_RELEASES_MXR WHERE MXR_SISTEMA='ECF' ORDER BY MXR_ORDEM");
+						
+						ResultSet rs = pstmt.executeQuery();
+
+						while (rs.next()) {
+							comboBoxInicialECF.addItem(rs.getString("MXR_VERSAO"));
+							comboBoxFinalECF.addItem(rs.getString("MXR_VERSAO"));
+							
+							
+
+						}
+						pstmt.close();
+						conexao.close();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				} else {
+					comboBoxInicialECF.removeAllItems();
+					comboBoxFinalECF.removeAllItems();
+				}
+			}
+		});
+		
+		checkBoxEFD.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					sistemaSelecionado = "EFD";
+					try {
+						Connection conexao = getConexao();
+						PreparedStatement pstmt = conexao.prepareStatement(
+								"SELECT MXR_VERSAO FROM MXS_RELEASES_MXR WHERE MXR_SISTEMA='EFD' ORDER BY MXR_ORDEM");
+						
+						ResultSet rs = pstmt.executeQuery();
+
+						while (rs.next()) {
+							comboBoxInicialEFD.addItem(rs.getString("MXR_VERSAO"));
+							comboBoxFinalEFD.addItem(rs.getString("MXR_VERSAO"));
+							
+							
+
+						}
+						pstmt.close();
+						conexao.close();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				} else {
+					comboBoxInicialEFD.removeAllItems();
+					comboBoxFinalEFD.removeAllItems();
+				}
+			}
+		});
+		checkBoxNFE.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					sistemaSelecionado = "NFE";
+					try {
+						Connection conexao = getConexao();
+						PreparedStatement pstmt = conexao.prepareStatement(
+								"SELECT MXR_VERSAO FROM MXS_RELEASES_MXR WHERE MXR_SISTEMA='NFE' ORDER BY MXR_ORDEM");
+						
+						ResultSet rs = pstmt.executeQuery();
+
+						while (rs.next()) {
+							comboBoxInicialNFE.addItem(rs.getString("MXR_VERSAO"));
+							comboBoxFinalNFE.addItem(rs.getString("MXR_VERSAO"));
+							
+							
+
+						}
+						pstmt.close();
+						conexao.close();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				} else {
+					comboBoxInicialNFE.removeAllItems();
+					comboBoxFinalNFE.removeAllItems();
+				}
+			}
+		});
+
+		checkBoxSPED.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					sistemaSelecionado = "SPED";
+					try {
+						Connection conexao = getConexao();
+						PreparedStatement pstmt = conexao.prepareStatement(
+								"SELECT MXR_VERSAO FROM MXS_RELEASES_MXR WHERE MXR_SISTEMA='SPED' ORDER BY MXR_ORDEM");
+						
+						ResultSet rs = pstmt.executeQuery();
+
+						while (rs.next()) {
+							comboBoxInicialSPED.addItem(rs.getString("MXR_VERSAO"));
+							comboBoxFinalSPED.addItem(rs.getString("MXR_VERSAO"));
+							
+							
+
+						}
+						pstmt.close();
+						conexao.close();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				} else {
+					comboBoxInicialSPED.removeAllItems();
+					comboBoxFinalSPED.removeAllItems();
+				}
+			}
+		});
+
+		
 
 		btnConstruir.addActionListener(new ActionListener() {
 
@@ -374,7 +579,18 @@ public class App extends DAO {
 				
 				String pat = textPat.getText();
 				String base = textBase.getText();
-				File pacoteDoCliente = new File("C:\\[MXM-" + pat + "]-" + pat + "_" + base);
+				String amb ="";
+				if(rdbtnHomologacao.isSelected()){
+				         amb = "HMG";
+				}
+				if(rdbtnProducao.isSelected()){
+				         amb = "PRD";
+				}
+				if(rdbtnTeste.isSelected()){
+			         amb = "TST";
+			}
+				
+				File pacoteDoCliente = new File("C:\\[MXM-P"+ pat +"]-" +amb+ "_" + base);
 				pacoteModelo = new File("C:\\Admdados\\Atualizacao\\[MXM]-Pacote_Atualizacao");
 
 				if (sistemaSelecionado.equalsIgnoreCase("MANAGER")) {
@@ -391,14 +607,10 @@ public class App extends DAO {
 						System.out.println(managerDestino);
 						
 						
+		
+					
+						CopiaDiretorio.copiarDiretorios(managerInicial,managerDestino);
 						
-						int size = comboBoxInicialManager.getItemCount();
-						for (int i = 0; i < size; i++) {
-							
-							String item = (String) comboBoxInicialManager.getItemAt(i);
-							CopiaDiretorio.copiarDiretorios(managerInicial,managerDestino);
-							
-						}
 						
 						
 
@@ -406,7 +618,7 @@ public class App extends DAO {
 						ex.printStackTrace();
 					}
 				}
-
+		
 			}
 		});
 	}
